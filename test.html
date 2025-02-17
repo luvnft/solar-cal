@@ -54,13 +54,12 @@ export default function RoommateSwipe() {
         <Image
           src={profiles[index].image}
           alt={profiles[index].name}
-          width={300}
-          height={300}
+          width={350}
+          height={350}
           className={styles.image}
         />
-        <h2>{profiles[index].name}</h2>
-        <h4>{profiles[index].university}</h4>
-        <p>{profiles[index].bio}</p>
+        <h2 className={styles.name}>{profiles[index].name}</h2>
+        <p className={styles.bio}>{profiles[index].bio}</p>
       </div>
 
       <div className={styles.buttons}>
