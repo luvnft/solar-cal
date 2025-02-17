@@ -3,17 +3,28 @@ import Image from "next/image";
 import { FaThumbsUp, FaThumbsDown, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import styles from "./RoommateSwipe.module.css";
 
-const profile = {
-  id: 1,
-  image: "/profile1.jpg",
-};
+const profiles = [
+  { id: 1, image: "/profile1.jpg" },
+  { id: 2, image: "/profile2.jpg" },
+  { id: 3, image: "/profile3.jpg" }
+];
 
 export default function RoommateSwipe() {
+  const [index, setIndex] = useState(0);
+
+  const handleNext = () => {
+    if (index < profiles.length - 1) setIndex(index + 1);
+  };
+
+  const handleBack = () => {
+    if (index > 0) setIndex(index - 1);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.card}>
         <Image
-          src={profile.image}
+          src={profiles[index].image}
           alt="Profile"
           width={312}
           height={398}
@@ -22,7 +33,7 @@ export default function RoommateSwipe() {
       </div>
 
       <div className={styles.controls}>
-        <button className={styles.navButton}>
+        <button className={styles.navButton} onClick={handleBack} disabled={index === 0}>
           <FaArrowLeft size={40} />
         </button>
         <div className={styles.actionButtons}>
@@ -33,7 +44,7 @@ export default function RoommateSwipe() {
             <FaThumbsUp size={30} />
           </button>
         </div>
-        <button className={styles.navButton}>
+        <button className={styles.navButton} onClick={handleNext} disabled={index === profiles.length - 1}>
           <FaArrowRight size={40} />
         </button>
       </div>
